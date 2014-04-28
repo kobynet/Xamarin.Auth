@@ -46,7 +46,7 @@ namespace Xamarin.Auth
 		protected Uri requestTokenUrl;
 		protected Uri authorizeUrl;
 		protected Uri accessTokenUrl;
-		protected Uri callbackUrl;
+		public Uri CallbackUrl;
 
 		GetUsernameAsyncFunc getUsernameAsync;
 
@@ -56,7 +56,7 @@ namespace Xamarin.Auth
 		string verifier;
 
 		protected override Uri CustomUrl {
-			get { return callbackUrl; }
+			get { return CallbackUrl; }
 		}
 
 		/// <summary>
@@ -114,7 +114,7 @@ namespace Xamarin.Auth
 			if (callbackUrl == null) {
 				throw new ArgumentNullException ("callbackUrl");
 			}
-			this.callbackUrl = callbackUrl;
+			this.CallbackUrl = callbackUrl;
 
 			this.getUsernameAsync = getUsernameAsync;
 		}
@@ -131,7 +131,7 @@ namespace Xamarin.Auth
 				"GET",
 				requestTokenUrl, 
 				new Dictionary<string, string>() {
-					{ "oauth_callback", callbackUrl.AbsoluteUri },
+					{ "oauth_callback", CallbackUrl.AbsoluteUri },
 				},
 				consumerKey,
 				consumerSecret,
@@ -161,7 +161,7 @@ namespace Xamarin.Auth
 		/// </param>
 		public override void OnPageLoaded (Uri url)
 		{
-			if (url.Host == callbackUrl.Host && url.AbsolutePath == callbackUrl.AbsolutePath) {
+			if (url.Host == CallbackUrl.Host && url.AbsolutePath == CallbackUrl.AbsolutePath) {
 				
 				var query = url.Query;
 				var r = WebEx.FormDecode (query);

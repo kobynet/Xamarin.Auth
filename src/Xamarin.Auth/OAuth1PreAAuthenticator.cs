@@ -47,7 +47,7 @@ namespace Xamarin.Auth
 				                         authorizeUrl.AbsoluteUri,
 										 paramType,
 										 Uri.EscapeDataString (token),
-				                         Uri.EscapeDataString (callbackUrl.AbsoluteUri));
+				                         Uri.EscapeDataString (CallbackUrl.AbsoluteUri));
 
 				return new Uri (url);
 			});
