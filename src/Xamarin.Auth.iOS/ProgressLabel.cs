@@ -1,9 +1,13 @@
 using System;
 using MonoTouch.UIKit;
 using System.Drawing;
+using MonoTouch.Foundation;
 
 namespace Xamarin.Controls
 {
+	#if XAMARIN_AUTH 
+	[Register ("ProgressLabelAuth")]
+	#endif
 	internal class ProgressLabel : UIView
 	{
 		UIActivityIndicatorView activity;
